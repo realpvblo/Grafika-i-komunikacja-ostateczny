@@ -184,11 +184,11 @@ def onclick2():
             self.alive = True
 
         def move_hero(self, userInput):
-            if userInput[pygame.K_RIGHT] and self.x <= win_width - 62:
+            if (userInput[pygame.K_RIGHT] or userInput[pygame.K_d]) and self.x <= win_width - 62:
                 self.x += self.velx
                 self.face_right = True
                 self.face_left = False
-            elif userInput[pygame.K_LEFT] and self.x >= 0:
+            elif (userInput[pygame.K_LEFT] or userInput[pygame.K_a]) and self.x >= 0:
                 self.x -= self.velx
                 self.face_right = False
                 self.face_left = True
