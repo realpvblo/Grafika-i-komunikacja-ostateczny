@@ -4,13 +4,10 @@ from turtle import *
 def onclick1():
     from PIL import Image, ImageDraw
     def make_bezier(xys):
-        # xys should be a sequence of 2-tuples (Bezier control points)
         n = len(xys)
         combinations = pascal_row(n - 1)
 
         def bezier(ts):
-            # This uses basic general formula for bezier curves
-            # http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Generalization
             result = []
             for t in ts:
                 tpowers = (t ** i for i in range(n))
@@ -23,17 +20,14 @@ def onclick1():
         return bezier
 
     def pascal_row(n):
-        # This returns the nth row of Pascal's Triangle
         result = [1]
         x, numerator = 1, n
         for denominator in range(1, n // 2 + 1):
-            # print(numerator,denominator,x)
             x *= numerator
             x /= denominator
             result.append(x)
             numerator -= 1
         if n & 1 == 0:
-            # n is even
             result.extend(reversed(result[:-1]))
         else:
             result.extend(reversed(result))
@@ -63,7 +57,7 @@ def onclick1():
         bezier = make_bezier(xys)
         points.extend(bezier(ts))
 
-    # letter P
+    # P
 
     im = Image.new('RGBA', (100, 100), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
@@ -80,7 +74,7 @@ def onclick1():
     draw.polygon(points, fill=None, outline='red')
     im.save('Inicjaly/LetterP.png')
 
-    # letter W
+    # W
 
     im = Image.new('RGBA', (100, 100), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
